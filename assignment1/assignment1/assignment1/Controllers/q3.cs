@@ -10,13 +10,16 @@ namespace assignment1.Controllers
     public class q3 : ControllerBase
     {
         //q3
-        //<summary> This method receives an integer and outputs the cube of the integer</summary>
-        //<param name = "number" > The base number to raise to an cube</param>
-        //<returns> return the cube of the integer {number} </returns>
-        //<example>
-        //GET : https://localhost:7214/api/q3/cube/6 -> 216
-        //GET : https://localhost:7214/api/q3/cube/-6 -> -216
-        //</example>
+
+        /// <summary>
+        /// This method receives an integer and outputs the cube of the integer
+        /// </summary>
+        /// <param name="number"> The base number to raise to an cube</param>
+        /// <returns>return the cube of the integer {number}</returns>
+        ///<example>
+        ///GET : https://localhost:7214/api/q3/cube/6 -> 216
+        ///GET : https://localhost:7214/api/q3/cube/-6 -> -216
+        ///</example>
 
         [HttpGet(template: "cube/{number}")] // route has to be "route"
         public double Cube(int number) 

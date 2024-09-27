@@ -12,11 +12,14 @@ namespace assignment1.Controllers
     public class q1 : ControllerBase
     {
         // q1
-        //<summary> output a welcome string. </summary>
-        //<returns> return "Welcome to 5125!" </returns>
-        //<example>
-        //GET : https://localhost:7214/api/q1/welcome -> Welcome to 5125!
-        //</example>
+
+        /// <summary>
+        /// output a welcome string.
+        /// </summary>
+        /// <returns>return "Welcome to 5125!"</returns>
+        /// <example>
+        /// GET : https://localhost:7214/api/q1/welcome -> Welcome to 5125!
+        /// </example>
 
         [HttpGet(template: "welcome")] 
         // maps GET request with route "welcome" = access ../welcome

@@ -8,21 +8,22 @@ namespace assignment1.Controllers
     public class q5 : ControllerBase
     {
         //q5
-        //<summary>
-        //receives a POST request with secret number and
-        //outputs a string with the secret number
-        //</summary>
-        //<param name = "secret" > The secret number</param>
-        //<returns> return an acknowledgement of the { secret } integer </returns>
-        //<example>
-        // POST : https://localhost:7214/api/q4/knockknock
-        // HEADER: Content-Type: application/json
-        // BODY: -1000
-        //-> Shh.. the secret is -1000
-        //curl -H "Content-Type: application/json" -d "-1000" https://localhost:7214/api/q5/secret
-        //curl -H "Content-Type: application/json" -d "20" https://localhost:7214/api/q5/secret
-        //-> Shh.. the secret is 20
-        //</example>
+
+        /// <summary>
+        /// receives a POST request with secret number and
+        /// outputs a string with the secret number
+        /// </summary>
+        /// <param name="secret">The secret numbe</param>
+        /// <returns>return an acknowledgement of the { secret } integer</returns>     
+        ///<example>
+        /// POST : https://localhost:7214/api/q4/knockknock
+        /// HEADER: Content-Type: application/json
+        /// BODY: -1000
+        ///-> Shh.. the secret is -1000
+        ///curl -H "Content-Type: application/json" -d "-1000" https://localhost:7214/api/q5/secret
+        ///curl -H "Content-Type: application/json" -d "20" https://localhost:7214/api/q5/secret
+        ///-> Shh.. the secret is 20
+        ///</example>
 
         [HttpPost(template: "secret")] //"secret" route
         [Consumes("application/json")] 

@@ -9,13 +9,15 @@ namespace assignment1.Controllers
     public class q7 : ControllerBase
     {
         //q7
-        //<summary> receives a number of day change and output the changed date starting from the current date</summary>
-        //<param name="days"> how many days the user want to adjust</param>>
-        //<returns> a string representation of the current date, adjusted by {days} </returns>
-        //<example>
-        //GET : https://localhost:7214/api/q7/timemachine?days=-3 -> 2024-09-23
-        //GET : https://localhost:7214/api/q7/timemachine?days=7 -> 2024-10-03
-        //</example>
+        /// <summary>
+        /// receives a number of day change and output the changed date starting from the current date
+        /// </summary>
+        /// <param name="days">how many days the user want to adjust</param>
+        /// <returns>a string representation of the current date, adjusted by {days}</returns>
+        ///<example>
+        ///GET : https://localhost:7214/api/q7/timemachine?days=-3 -> 2024-09-23
+        ///GET : https://localhost:7214/api/q7/timemachine?days=7 -> 2024-10-03
+        ///</example>
 
         [HttpGet(template: "timemachine")]
         public string Timemachine(int days) // DateTime: Gets the current date

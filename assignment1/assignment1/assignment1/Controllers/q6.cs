@@ -8,13 +8,15 @@ namespace assignment1.Controllers
     public class q6 : ControllerBase
     {
         //q6
-        //<summary> receives a side length and outputs the area of the regular hexagon</summary>
-        //<param name = "side" > The side length</param>
-        //<returns> return the area of a regular hexagon with side length </returns>
-        //<example>
-        //GET : https://localhost:7214/api/q6/hexagon?side=9.5 -> 234.47637807463676
-        //GET : https://localhost:7214/api/q6/hexagon?side=15 -> 584.567147554496
-        //</example>
+        /// <summary>
+        /// receives a side length and outputs the area of the regular hexagon
+        /// </summary>
+        /// <param name="side">The side length</param>
+        /// <returns>return the area of a regular hexagon with side length</returns>
+        ///<example>
+        ///GET : https://localhost:7214/api/q6/hexagon?side=9.5 -> 234.47637807463676
+        ///GET : https://localhost:7214/api/q6/hexagon?side=15 -> 584.567147554496
+        ///</example>
 
         [HttpGet(template: "hexagon")]
         public double Hexagon(double side)
