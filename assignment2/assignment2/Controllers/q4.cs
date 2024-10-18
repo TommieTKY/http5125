@@ -15,8 +15,7 @@ namespace assignment2.Controllers
         /// <param name="Y">representing the sizes of the Yobis.</param>
         /// <returns>output the Dusa’s size when it eventually runs away.</returns>
         /// <example>
-        /// GET:
-        /// curl "https://localhost:7276/api/q4/Dusa?D=5&Y=3&Y=2&Y=9&Y=20&Y=22&Y=14"
+        /// GET: "https://localhost:7276/api/q4/Dusa?D=5&Y=3&Y=2&Y=9&Y=20&Y=22&Y=14"
         /// ->19
         /// curl "https://localhost:7276/api/q4/Dusa?D=10&Y=10&Y=3&Y=5"
         /// ->10

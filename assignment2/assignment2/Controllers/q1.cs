@@ -15,7 +15,10 @@ namespace assignment2.Controllers
         /// <param name="Deliveries">the number of packages delivered.</param>
         /// <returns>output the final score</returns>
         /// <example> 
-        /// POST:
+        /// POST : https://localhost:7276/api/q1/delivedroid
+        /// HEADER: Content-Type: application/x-www-form-urlencoded
+        /// BODY: Collisions=2&Deliveries=5
+        /// ->730
         /// curl -H "Content-Type: application/x-www-form-urlencoded" -d "Collisions=2&Deliveries=5" https://localhost:7276/api/q1/delivedroid
         /// -> 730
         /// curl -H "Content-Type: application/x-www-form-urlencoded" -d "Collisions=-1&Deliveries=0" https://localhost:7276/api/q1/delivedroid

@@ -16,7 +16,10 @@ namespace assignment2.Controllers
         /// <param name="B">the number of blue plates chosen.</param>
         /// <returns>output the cost of the meal in dollars.</returns>
         /// <example> 
-        /// POST:
+        /// POST : https://localhost:7276/api/q2/Conveyor
+        /// HEADER: Content-Type: application/x-www-form-urlencoded
+        /// BODY: R=0&G=2&B=4
+        /// ->28
         /// curl -H "Content-Type: application/x-www-form-urlencoded" -d "R=0&G=2&B=4" https://localhost:7276/api/q2/Conveyor
         /// -> 28
         /// curl -H "Content-Type: application/x-www-form-urlencoded" -d "R=0&G=2&B=-4" https://localhost:7276/api/q2/Conveyor
