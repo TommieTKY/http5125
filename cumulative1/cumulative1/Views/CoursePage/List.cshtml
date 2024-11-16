@@ -1,0 +1,8 @@
+﻿@model IEnumerable<cumulative1.Models.Course>
+
+<h1>Course List</h1>
+
+@foreach (cumulative1.Models.Course course in Model)
+{
+    <div>@course.CourseId @course.CourseCode @course.TeacherId @course.StartDate @course.FinishDate @course.CourseName</div>
+}
