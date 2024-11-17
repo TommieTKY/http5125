@@ -50,29 +50,27 @@ namespace cumulative1.Controllers
                     Command.Parameters.AddWithValue("@start", dateStart.Value.ToString("yyyy-MM-dd"));
                     Command.Parameters.AddWithValue("@end", dateEnd.Value.ToString("yyyy-MM-dd"));
                 }
-                else { 
 
-                    Command.CommandText = query;
-                    Command.Prepare(); // executed multiple times with different parameters
+                Command.CommandText = query;
+                Command.Prepare(); // executed multiple times with different parameters
 
-                    // Gather Result Set of Query into a variable
-                    using (MySqlDataReader ResultSet = Command.ExecuteReader())
+                // Gather Result Set of Query into a variable
+                using (MySqlDataReader ResultSet = Command.ExecuteReader())
+                {
+                    //Loop Through Each Row the Result Set
+                    //until ResultSet = false
+                    while (ResultSet.Read())
                     {
-                        //Loop Through Each Row the Result Set
-                        //until ResultSet = false
-                        while (ResultSet.Read())
-                        {
-                            Teacher CurrentTeacher = new Teacher();
-                            //Access Column information by the DB column name as an index
-                            CurrentTeacher.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
-                            CurrentTeacher.TeacherFname = ResultSet["teacherfname"].ToString();
-                            CurrentTeacher.TeacherLname = ResultSet["teacherlname"].ToString();
-                            CurrentTeacher.EmployeeNumber = ResultSet["employeenumber"].ToString();
-                            CurrentTeacher.HireDate = Convert.ToDateTime(ResultSet["hiredate"]);
-                            CurrentTeacher.Salary = "$"+(ResultSet["salary"].ToString());
-                            CurrentTeacher.CourseList = ResultSet["courseName"].ToString();
-                            Teachers.Add(CurrentTeacher);
-                        }
+                        Teacher CurrentTeacher = new Teacher();
+                        //Access Column information by the DB column name as an index
+                        CurrentTeacher.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
+                        CurrentTeacher.TeacherFname = ResultSet["teacherfname"].ToString();
+                        CurrentTeacher.TeacherLname = ResultSet["teacherlname"].ToString();
+                        CurrentTeacher.EmployeeNumber = ResultSet["employeenumber"].ToString();
+                        CurrentTeacher.HireDate = Convert.ToDateTime(ResultSet["hiredate"]);
+                        CurrentTeacher.Salary = "$"+(ResultSet["salary"].ToString());
+                        CurrentTeacher.CourseList = ResultSet["courseName"].ToString();
+                        Teachers.Add(CurrentTeacher);
                     }
                 }
                 //Return the final list of author names
