@@ -19,6 +19,7 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
 ---
 
 - Controllers/TeacherAPIController.cs
+
   An API Controller which allows us to access and manipulate information about Teachers.
 
   GET: api/Teacher/ListTeachers -> A list of teachers.
@@ -31,6 +32,7 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
   ![Teacher List Page](image/teacher.jpeg)
 
 - Controllers/StudentAPIController.cs
+
   An API Controller which allows us to access and manipulate information about Students.
 
   GET: api/Student/ListStudents -> A list of students.
@@ -43,6 +45,7 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
   ![Student List Page](image/student.jpeg)
 
 - Controllers/CourseAPIController.cs
+
   An API Controller which allows us to access and manipulate information about Courses.
 
   GET: api/Course/ListCourses -> A list of courses.
