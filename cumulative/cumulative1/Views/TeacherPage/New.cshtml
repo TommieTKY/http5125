@@ -21,3 +21,13 @@
         <input type="submit" value="Add Teacher" />
     </div>
 </form>
+
+<script>
+    window.onload = function () {
+        var formHandle = document.forms.ixdForm;
+        formHandle.onsubmit = processForm;
+        function processForm() {
+            var inputF = formHandle.f__fName;
+        }
+    }
+</script>

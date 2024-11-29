@@ -30,17 +30,8 @@ namespace cumulative1.Controllers
         [HttpGet]
         public IActionResult Show(int id) 
         {
-            IActionResult response = _api.FindTeacher(id);
-            if (response is OkObjectResult okresult)
-            {
-                Teacher? SelectedTeacher = okresult.Value == null ? null : (Teacher)okresult.Value;
-                return View(SelectedTeacher);
-            }
-            else
-            {
-                return View(null);
-            }
-            
+            Teacher SelectedTeacher = _api.FindTeacher(id);
+            return View(SelectedTeacher);
         }
 
 
@@ -67,16 +58,8 @@ namespace cumulative1.Controllers
         [HttpGet]
         public IActionResult DeleteConfirm(int id)
         {
-            IActionResult response = _api.FindTeacher(id);
-            if (response is OkObjectResult okresult)
-            {
-                Teacher? SelectedTeacher = okresult.Value == null ? null : (Teacher)okresult.Value;
-                return View(SelectedTeacher);
-            }
-            else
-            {
-                return View(null);
-            }
+            Teacher SelectedTeacher = _api.FindTeacher(id);
+            return View(SelectedTeacher);
         }
 
         [HttpPost]

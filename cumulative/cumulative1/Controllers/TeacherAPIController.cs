@@ -85,18 +85,16 @@ namespace cumulative1.Controllers
         /// <example>
         /// GET: api/FindTeacher/1 -> ["teacherId":1,"teacherFname":"Alexander","teacherLname":"Bennett","employeeNumber":"T378","hireDate":"2016-08-05T00:00:00","salary":"$55.30","courseList":"Web Application Development"]
         /// curl -X GET "https://localhost:7293/api/Teacher/FindTeacher/100"
-        /// -> {"teacherId":100,"teacherFname":"Teacher Not Found","teacherLname":"Teacher Not Found","employeeNumber":"Teacher Not Found","hireDate":"0001-01-01T00:00:00","salary":"Teacher Not Found","courseList":"Teacher Not Found"}
-        /// curl -X GET "https://localhost:7293/api/Teacher/FindTeacher/-1"
-        /// -> {"teacherId":-1,"teacherFname":"Teacher Not Found","teacherLname":"Teacher Not Found","employeeNumber":"Teacher Not Found","hireDate":"0001-01-01T00:00:00","salary":"Teacher Not Found","courseList":"Teacher Not Found"}
+        /// -> {"teacherId":100,"teacherFname":"Teacher Not Found","teacherLname":"Teacher Not Found","employeeNumber":"Teacher Not Found","hireDate":"0001-01-01T00:00:00","salary":0,"courseList":"Teacher Not Found"}
         /// curl -X GET "https://localhost:7293/api/Teacher/FindTeacher/10"
-        /// -> {"teacherId":10,"teacherFname":"John","teacherLname":"Taram","employeeNumber":"T505","hireDate":"2015-10-23T00:00:00","salary":"$79.63","courseList":"Massage Therapy"}
+        /// -> {"teacherId":10,"teacherFname":"John","teacherLname":"Taram","employeeNumber":"T505","hireDate":"2015-10-23T00:00:00","salary":79.63,"courseList":"Massage Therapy"}}
         /// </example>
         /// <returns>The associated teacher object matching the primary key</returns>
         [HttpGet]
         [Route(template: "FindTeacher/{TeacherId}")]
-        public IActionResult FindTeacher(int TeacherId)
+        public Teacher FindTeacher(int TeacherId)
         {
-            Teacher? SelectedTeacher = null;
+            Teacher SelectedTeacher = new Teacher();
 
             MySqlConnection Connection = _context.AccessDatabase();
             Connection.Open();
@@ -108,7 +106,6 @@ namespace cumulative1.Controllers
             MySqlDataReader ResultSet = Command.ExecuteReader();
             if (ResultSet.Read())
             {
-                SelectedTeacher = new Teacher();
                 SelectedTeacher.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 SelectedTeacher.TeacherFname = ResultSet["teacherfname"].ToString();
                 SelectedTeacher.TeacherLname = ResultSet["teacherlname"].ToString();
@@ -117,38 +114,19 @@ namespace cumulative1.Controllers
                 SelectedTeacher.Salary = Convert.ToDecimal(ResultSet["salary"]);
                 SelectedTeacher.CourseList = ResultSet["courseName"].ToString();
             }
-
-            //if (ResultSet.Read())
-            //{
-            //    int TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
-            //    string? TeacherFname = ResultSet["teacherfname"]?.ToString();
-            //    string? TeacherLname = ResultSet["teacherlname"]?.ToString();
-            //    string? EmployeeNumber = ResultSet["employeenumber"]?.ToString();
-            //    DateTime HireDate = Convert.ToDateTime(ResultSet["hiredate"]);
-            //    decimal Salary = Convert.ToDecimal(ResultSet["salary"]);
-            //    string? CourseList = ResultSet["courseName"].ToString();
-
-            //    SelectedTeacher = new Teacher()
-            //    {
-            //        TeacherId = TeacherId,
-            //        TeacherFname = TeacherFname,
-            //        TeacherLname = TeacherLname,
-            //        EmployeeNumber = EmployeeNumber,
-            //        HireDate = HireDate,
-            //        Salary = Salary,
-            //        CourseList = CourseList
-            //    };
-            //}
-
-            //Error Handling when trying to access a teacher that does not exist
-            if (SelectedTeacher == null)
+            else //Error Handling when trying to access a teacher that does not exist
             {
-                return NotFound($"Teacher with ID {TeacherId} not found.");
+                SelectedTeacher.TeacherId = TeacherId;
+                SelectedTeacher.TeacherFname = "Teacher Not Found";
+                SelectedTeacher.TeacherLname = "Teacher Not Found";
+                SelectedTeacher.EmployeeNumber = "Teacher Not Found";
+                SelectedTeacher.HireDate = DateTime.MinValue;
+                SelectedTeacher.Salary = 0;
+                SelectedTeacher.CourseList = "Teacher Not Found";
             }
             ResultSet.Close();
             Connection.Close();
-            return Ok(SelectedTeacher);
-
+            return SelectedTeacher;
         }
 
         /// <summary>

@@ -1,11 +1,20 @@
 ﻿@model cumulative1.Models.Teacher
 
-<h2>Are you sure you want to delete the teacher?</h2>
+@if (@Model.TeacherFname != "Teacher Not Found")
+{
+    <h1>Are you sure you want to delete the teacher?</h1>
 
-<p>Name: @Model.TeacherFname @Model.TeacherLname</p>
+    <p>Name: @Model.TeacherFname @Model.TeacherLname</p>
 
-<a href="/TeacherPage/Show/@Model.TeacherId">No, take me back</a>
+    <a href="/TeacherPage/Show/@Model.TeacherId">No, take me back</a>
 
-<form method="POST" action="/TeacherPage/Delete/@Model.TeacherId">
-    <input type="submit" value="Confirm Delete" />
-</form>
+    <form method="POST" action="/TeacherPage/Delete/@Model.TeacherId">
+        <input type="submit" value="Confirm Delete" />
+    </form>
+}
+else
+{
+    <h1>Teahcer Not Found</h1>
+    <a href="/TeacherPage/List">Go back to Teahcer List</a>
+}
+
