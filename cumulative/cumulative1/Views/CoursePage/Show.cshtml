@@ -1,0 +1,11 @@
+﻿@model cumulative1.Models.Course
+
+<h1>@Model.CourseCode @Model.CourseName</h1>
+<p>Course ID: @Model.CourseId</p>
+<p>Course Code: @Model.CourseCode</p>
+<p>Teacher ID: @Model.TeacherId</p>
+<p>Start Date: @Model.StartDate</p>
+<p>Finish Date: @Model.FinishDate</p>
+<p>Course Name: @Model.CourseName</p>
+
+<a href="/CoursePage/DeleteConfirm/@Model.CourseId">Delete</a>

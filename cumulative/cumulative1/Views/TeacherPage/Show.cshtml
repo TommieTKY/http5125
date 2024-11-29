@@ -1,0 +1,43 @@
+﻿@model cumulative1.Models.Teacher
+
+<div class="details">
+    <h1>@Model.TeacherFname @Model.TeacherLname</h1>
+    <p>Teacher ID: @Model.TeacherId</p>
+    <p>First Name: @Model.TeacherFname</p>
+    <p>Last Name: @Model.TeacherLname</p>
+    <p>Employee Number: @Model.EmployeeNumber</p>
+    <p>Hire Date: @Model.HireDate</p>
+    <p>Salary: $@Model.Salary</p>
+    <p>Teaching courses: @Model.CourseList</p>
+</div>
+<a href="/TeacherPage/DeleteConfirm/@Model.TeacherId">Delete</a>
+
+<style>
+    body {
+        background-color: pink;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .details {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        padding: 2em;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1{
+        color: forestgreen;
+        text-align: center;
+        margin-bottom:1.2em;
+    }
+
+    p{
+        color: saddlebrown;
+        padding-left:2em;
+    }
+</style>

@@ -1,0 +1,111 @@
+﻿@model IEnumerable<cumulative1.Models.Teacher>
+
+<div class="teacherList">
+<h1>Teacher List</h1>
+
+<a href="/TeacherPage/New">New</a>
+
+@foreach(cumulative1.Models.Teacher CurrentTeacher in Model)
+{
+    <div>
+        <a href="/TeacherPage/Show/@CurrentTeacher.TeacherId">@CurrentTeacher.TeacherFname @CurrentTeacher.TeacherLname</a>
+    </div>
+}
+</div>
+
+
+<div class="search">
+<h2>Search a Teacher by their Hire Date within a range</h2>
+<h3>Please input a range.</h3>
+
+<form method="GET" action="/TeacherPage/List">
+    <div>
+        <label for="dateStart">Start:</label>
+        <input type="date" id="dateStart" name="dateStart" />
+    </div>
+
+    <div>
+        <label for="dateEnd">End:</label>
+        <input type="date" id="dateEnd" name="dateEnd" />
+    </div>
+
+    <div>
+        <input type="submit" value="Confirm" />
+    </div>
+</form>
+</div>
+
+
+<style>
+    body {
+        background-color: lightyellow;
+    }
+
+    h1{
+        text-align: center;
+        color: forestgreen;
+        margin-bottom:1.1em;
+        flex: 0 0 100%;
+    }
+
+    h2{
+        text-align: center;
+        color: darkviolet;
+        margin-bottom: 0.5em;
+    }
+    .teacherList{
+        margin: 2.5em;
+        padding: 1.5em;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        display:flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .teacherList div{
+        flex: 0 0 20%;
+        box-sizing: border-box;
+        padding: 1.5em;
+        margin:1.2em;
+        border: 0.2em solid orange;
+        border-radius:8px;
+        justify-content:space-evenly;
+        text-align: center;
+    }
+
+
+    a{
+        text-decoration: none;
+        color:saddlebrown;
+    }
+
+    .search{
+        padding: 1.5em;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+        color: blueviolet;
+    }
+
+    form div{
+        margin:0.5em;
+    }
+</style>

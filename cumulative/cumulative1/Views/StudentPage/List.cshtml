@@ -1,0 +1,12 @@
+﻿@model IEnumerable<cumulative1.Models.Student>
+
+<h1>Student List</h1>
+
+<a href="/StudentPage/New">New</a>
+
+@foreach (cumulative1.Models.Student student in Model)
+{
+    <div>
+        <a href="/StudentPage/Show/@student.StudentId">@student.StudentFname @student.StudentLname</a>
+    </div>
+}
