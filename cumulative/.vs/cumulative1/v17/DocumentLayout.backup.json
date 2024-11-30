@@ -101,7 +101,7 @@
               "RelativeDocumentMoniker": "cumulative1\\Views\\TeacherPage\\New.cshtml",
               "ToolTip": "C:\\Users\\tongk\\OneDrive\\Documents\\http5125\\cumulative\\cumulative1\\Views\\TeacherPage\\New.cshtml",
               "RelativeToolTip": "cumulative1\\Views\\TeacherPage\\New.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACkAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-29T23:17:43.076Z",
               "EditorCaption": ""
@@ -116,8 +116,7 @@
               "RelativeToolTip": "cumulative1\\Controllers\\TeacherAPIController.cs",
               "ViewState": "AgIAAGYAAAAAAAAAAAAUwCAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T22:15:48.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-27T22:15:48.759Z"
             },
             {
               "$type": "Document",
@@ -129,8 +128,7 @@
               "RelativeToolTip": "cumulative1\\Views\\TeacherPage\\DeleteConfirm.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-28T04:30:02.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T04:30:02.095Z"
             },
             {
               "$type": "Document",
@@ -142,8 +140,7 @@
               "RelativeToolTip": "cumulative1\\Controllers\\TeacherPageController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAcwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:17:25.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T03:17:25.378Z"
             },
             {
               "$type": "Document",
@@ -155,8 +152,7 @@
               "RelativeToolTip": "cumulative1\\Controllers\\StudentPageController.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAkwDgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T22:42:26.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-29T22:42:26.314Z"
             },
             {
               "$type": "Document",

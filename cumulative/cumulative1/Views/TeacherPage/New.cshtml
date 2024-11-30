@@ -33,18 +33,28 @@
                 inputF.focus();
                 return false;
             };
+
             var inputL = formHandle.TeacherLname;
             if (inputL.value === "") {
                 inputL.style.background = "red";
                 inputL.focus();
                 return false;
             };
+
             // var inputD = formHandle.;
             // if (inputD.value === "") {
             //     inputD.style.background = "red";
             //     inputD.focus();
             //     return false;
             // };
+
+            var inputEnum = formHandle.EmployeeNumber;
+            var numReg = /^T\d{4}$/;
+            if (!numReg.test(inputEnum.value)) {
+                inputEnum.style.background = "red";
+                inputEnum.focus();
+                return false;
+            };
         };
     };
 </script>
