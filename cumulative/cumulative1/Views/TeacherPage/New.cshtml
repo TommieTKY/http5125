@@ -1,6 +1,6 @@
 ﻿<h1>Add a new Teacher</h1>
 
-<form method="POST" action="/TeacherPage/Create">
+<form method="POST" action="/TeacherPage/Create" name="createform">
     <div>
         <label for="TeacherFname">First name:</label>
         <input type="text" name="TeacherFname" id="TeacherFname" />
@@ -24,10 +24,27 @@
 
 <script>
     window.onload = function () {
-        var formHandle = document.forms.ixdForm;
+        var formHandle = document.forms.createform;
         formHandle.onsubmit = processForm;
         function processForm() {
-            var inputF = formHandle.f__fName;
-        }
-    }
+            var inputF = formHandle.TeacherFname;
+            if (inputF.value === "") {
+                inputF.style.background = "red";
+                inputF.focus();
+                return false;
+            };
+            var inputL = formHandle.TeacherLname;
+            if (inputL.value === "") {
+                inputL.style.background = "red";
+                inputL.focus();
+                return false;
+            };
+            // var inputD = formHandle.;
+            // if (inputD.value === "") {
+            //     inputD.style.background = "red";
+            //     inputD.focus();
+            //     return false;
+            // };
+        };
+    };
 </script>
