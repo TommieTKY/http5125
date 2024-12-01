@@ -1,4 +1,15 @@
-﻿<h1>Add a new Teacher</h1>
+﻿@model IEnumerable<cumulative1.Models.Teacher>
+
+@{
+    // List<string> teacherEnum = new List<string>();
+    // foreach (cumulative1.Models.Teacher eachTeacher in Model)
+    // {
+    //     teacherEnum.Add(eachTeacher.EmployeeNumber);
+    // }
+    // var employeeNumbers = Model.Select(t => t.EmployeeNumber).ToList();
+}
+
+<h1>Add a new Teacher</h1>
 
 <form method="POST" action="/TeacherPage/Create" name="createform">
     <div>
@@ -12,6 +23,10 @@
     <div>
         <label for="EmployeeNumber">Employee Number:</label>
         <input type="text" name="EmployeeNumber" id="EmployeeNumber" />
+    </div>
+    <div>
+        <label for="HireDate">Hire Date:</label>
+        <input type="datetime-local" name="HireDate" id="HireDate" />
     </div>
     <div>
         <label for="Salary">Salary($):</label>
@@ -41,20 +56,39 @@
                 return false;
             };
 
-            // var inputD = formHandle.;
-            // if (inputD.value === "") {
-            //     inputD.style.background = "red";
-            //     inputD.focus();
-            //     return false;
-            // };
+            var stringD = formHandle.HireDate;
+            var inputD = new Date(stringD.value);
+            var currentD = new Date();
+            if (stringD.value ==="" || inputD > currentD) {
+                stringD.style.background = "red";
+                stringD.focus();
+                return false;
+            };
 
             var inputEnum = formHandle.EmployeeNumber;
-            var numReg = /^T\d{4}$/;
+            var numReg = /^T\d{3}$/;
             if (!numReg.test(inputEnum.value)) {
                 inputEnum.style.background = "red";
                 inputEnum.focus();
                 return false;
             };
+
+            // for (var i = 0; i < teacherEnum.Count; i++) {
+            //     if (inputEnum === teacherEnum[i]) {
+            //         inputEnum.style.background = "red";
+            //         inputEnum.focus();
+            //         return false;
+            //     }
+            // }
+
+            // var existingEmployeeNumbers = Html.Raw(Json.Serialize(employeeNumbers));
+            // if (existingEmployeeNumbers.includes(inputEnum.value)) {
+            //     inputEnum.style.background = "red";
+            //     inputEnum.focus();
+            //     return false;
+            // }
+
         };
     };
 </script>
+

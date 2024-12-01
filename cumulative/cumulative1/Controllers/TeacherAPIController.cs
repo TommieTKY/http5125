@@ -148,10 +148,11 @@ namespace cumulative1.Controllers
             {
                 Connection.Open();
                 MySqlCommand Command = Connection.CreateCommand();
-                Command.CommandText = "INSERT INTO teachers (teacherid, teacherfname, teacherlname, employeenumber, hiredate, salary) values (0, @fname, @lname, @enum, CURRENT_DATE(), @salary)";
+                Command.CommandText = "INSERT INTO teachers (teacherid, teacherfname, teacherlname, employeenumber, hiredate, salary) values (0, @fname, @lname, @enum, @hdate, @salary)";
                 Command.Parameters.AddWithValue("@fname", NewTeacher.TeacherFname);
                 Command.Parameters.AddWithValue("@lname", NewTeacher.TeacherLname);
                 Command.Parameters.AddWithValue("@enum", NewTeacher.EmployeeNumber);
+                Command.Parameters.AddWithValue("@hdate", NewTeacher.HireDate);
                 Command.Parameters.AddWithValue("@salary", NewTeacher.Salary);
 
                 Command.ExecuteNonQuery();

@@ -43,12 +43,13 @@ namespace cumulative1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary)
+        public IActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime HireDate, decimal Salary)
         {
             Teacher NewTeacher = new Teacher();
             NewTeacher.TeacherFname = TeacherFname;
             NewTeacher.TeacherLname = TeacherLname;
             NewTeacher.EmployeeNumber = EmployeeNumber;
+            NewTeacher.HireDate = HireDate;
             NewTeacher.Salary = Salary;
 
             int TeacherId = _api.AddTeacher(NewTeacher);
