@@ -153,6 +153,16 @@ namespace cumulative1.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a Student in the database. Data is Student object, request query contains ID
+        /// </summary>
+        /// <param name="StudentId">The Student ID primary key</param>
+        /// <param name="StudentData">Student Object</param>
+        /// <returns>The updated Student object</returns>
+        /// <example>
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"studentFname\":\"Tommie\", \"studentLname\":\"Tong\", \"studentNumber\":\"T100\"}" "https://localhost:7293/api/Student/UpdateStudent/34"
+        /// -> {"studentId":34,"studentFname":"Tommie","studentLname":"Tong","studentNumber":"T100","enrolDate":"2024-12-13"}
+        /// </example>
         [HttpPut(template: "UpdateStudent/{StudentId}")]
         public Student UpdateStudent(int StudentId, [FromBody] Student StudentData)
         {
