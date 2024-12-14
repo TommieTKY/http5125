@@ -195,6 +195,7 @@ namespace cumulative1.Controllers
 
                 return Command.ExecuteNonQuery();
             }
+            return 0;
         }
 
         /// <summary>
@@ -217,25 +218,93 @@ namespace cumulative1.Controllers
         /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-01T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/29"
         /// -> {"teacherId":29,"teacherFname":"Tommie","teacherLname":"Tong","employeeNumber":"T100","hireDate":"2024-12-01T00:00:00","salary":99.00,"courseList":""}
         /// 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-01T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/99"
+        /// -> {"message":"First name cannot be empty.","status":400}
+        /// 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-01T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/99"
+        /// -> {"message":"Last name cannot be empty.","status":400}
+        /// 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-15T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/99"
+        /// -> {"message":"Hire date cannot be in the future.","status":400}
+        /// 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-12T00:00:00\", \"salary\":-99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/99"
+        /// -> {"message":"Salary cannot be negative.","status":400}
+        /// 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-12T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/99"
+        /// -> {"message":"Teacher with ID 99 does not exist.","status":404}
+        /// 
         /// 
         /// </example>
         [HttpPut(template: "UpdateTeacher/{TeacherId}")]
-        public Teacher UpdateTeacher(int TeacherId, [FromBody] Teacher TeacherData)
+        public IActionResult UpdateTeacher(int TeacherId, [FromBody] Teacher TeacherData)
         {
+            if (string.IsNullOrWhiteSpace(TeacherData.TeacherFname))
+            {
+                return BadRequest(new
+                {
+                    Message = "First name cannot be empty.",
+                    Status = 400
+                });
+            } else if (string.IsNullOrWhiteSpace(TeacherData.TeacherLname))
+            {
+                return BadRequest(new
+                {
+                    Message = "Last name cannot be empty.",
+                    Status = 400
+                });
+            } else if (TeacherData.HireDate > DateTime.Now)
+            {
+                return BadRequest(new
+                {
+                    Message = "Hire date cannot be in the future.",
+                    Status = 400
+                });
+            } else if (TeacherData.Salary < 0)
+            {
+                return BadRequest(new
+                {
+                    Message = "Salary cannot be negative.",
+                    Status = 400
+                });
+            }
+
+
+
             using (MySqlConnection Connection = _context.AccessDatabase())
             {
                 Connection.Open();
-                MySqlCommand Command = Connection.CreateCommand();
-                Command.CommandText = "UPDATE teachers SET teacherfname=@fname, teacherlname=@lname, employeenumber=@enum, hiredate=@hdate, salary=@salary WHERE teacherid=@id";
-                Command.Parameters.AddWithValue("@fname", TeacherData.TeacherFname);
-                Command.Parameters.AddWithValue("@lname", TeacherData.TeacherLname);
-                Command.Parameters.AddWithValue("@enum", TeacherData.EmployeeNumber);
-                Command.Parameters.AddWithValue("@hdate", TeacherData.HireDate);
-                Command.Parameters.AddWithValue("@salary", TeacherData.Salary);
-                Command.Parameters.AddWithValue("@id", TeacherId);
-                Command.ExecuteNonQuery();
+                MySqlCommand CheckCommand = Connection.CreateCommand();
+                CheckCommand.CommandText = "SELECT * FROM teachers WHERE teacherid = @id";
+                CheckCommand.Parameters.AddWithValue("@id", TeacherId);
+
+                MySqlDataReader ResultSet = CheckCommand.ExecuteReader();
+
+                if (ResultSet.Read())
+                {
+                    ResultSet.Close(); // Close the reader before issuing another command
+
+                    MySqlCommand UpdateCommand = Connection.CreateCommand();
+                    UpdateCommand.CommandText = "UPDATE teachers SET teacherfname=@fname, teacherlname=@lname, employeenumber=@enum, hiredate=@hdate, salary=@salary WHERE teacherid=@id";
+                    UpdateCommand.Parameters.AddWithValue("@fname", TeacherData.TeacherFname);
+                    UpdateCommand.Parameters.AddWithValue("@lname", TeacherData.TeacherLname);
+                    UpdateCommand.Parameters.AddWithValue("@enum", TeacherData.EmployeeNumber);
+                    UpdateCommand.Parameters.AddWithValue("@hdate", TeacherData.HireDate);
+                    UpdateCommand.Parameters.AddWithValue("@salary", TeacherData.Salary);
+                    UpdateCommand.Parameters.AddWithValue("@id", TeacherId);
+                    UpdateCommand.ExecuteNonQuery();
+
+                    return Ok(FindTeacher(TeacherId));
+                }
+                else
+                {
+                    return NotFound(new
+                    {
+                        Message = $"Teacher with ID {TeacherId} does not exist.",
+                        Status = 404
+                    });
+                }
             }
-            return FindTeacher(TeacherId);
         }
+
     }
 }

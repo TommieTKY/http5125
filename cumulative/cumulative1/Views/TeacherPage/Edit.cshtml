@@ -22,7 +22,7 @@
         </div>
         <div class="inputrow">
             <label for="HireDate">Hire Date:</label>
-            <input type="datetime-local" name="HireDate" id="HireDate" value="@Model.HireDate" /><span id="dateErr"></span>
+            <input type="datetime-local" name="HireDate" id="HireDate" value="@Model.HireDate.ToString("yyyy-MM-ddTHH:mm")" /><span id="dateErr"></span>
         </div>
         <div class="inputrow">
             <label for="Salary">Salary($):</label>
