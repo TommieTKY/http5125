@@ -2,6 +2,11 @@
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using cumulative1.Models;
 using MySql.Data.MySqlClient;
+using Mysqlx.Prepare;
+using Mysqlx.Crud;
+using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.IO;
 
 namespace cumulative1.Controllers
 {
@@ -103,7 +108,10 @@ namespace cumulative1.Controllers
             Command.CommandText = "SELECT teachers.*, GROUP_CONCAT(courses.coursename SEPARATOR ', ') AS courseName FROM teachers LEFT JOIN courses ON teachers.teacherid=courses.teacherid WHERE teachers.teacherid=@id GROUP BY teachers.teacherid";
             Command.Parameters.AddWithValue("@id", TeacherId);
 
+            //Executes a query that retrieves rows of data from a database, such as a SELECT statement.
+            //Returns a DataReader object(SqlDataReader), which provides a forward-only, read - only stream of data.
             MySqlDataReader ResultSet = Command.ExecuteReader();
+
             if (ResultSet.Read())
             {
                 SelectedTeacher.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
@@ -149,12 +157,15 @@ namespace cumulative1.Controllers
                 Connection.Open();
                 MySqlCommand Command = Connection.CreateCommand();
                 Command.CommandText = "INSERT INTO teachers (teacherid, teacherfname, teacherlname, employeenumber, hiredate, salary) values (0, @fname, @lname, @enum, @hdate, @salary)";
+
                 Command.Parameters.AddWithValue("@fname", NewTeacher.TeacherFname);
                 Command.Parameters.AddWithValue("@lname", NewTeacher.TeacherLname);
                 Command.Parameters.AddWithValue("@enum", NewTeacher.EmployeeNumber);
                 Command.Parameters.AddWithValue("@hdate", NewTeacher.HireDate);
                 Command.Parameters.AddWithValue("@salary", NewTeacher.Salary);
 
+                //Executes a query that performs an action but does not return any rows, such as INSERT, UPDATE, DELETE, or CREATE.
+                //Returns an integer indicating the number of rows affected by the query.
                 Command.ExecuteNonQuery();
                 return Convert.ToInt32(Command.LastInsertedId);
             }
@@ -184,6 +195,47 @@ namespace cumulative1.Controllers
 
                 return Command.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Updates a Teacher in the database. Data is Teacher object, request query contains ID
+        /// </summary>
+        /// <param name="TeacherId">The Teacher ID primary key</param>
+        /// <param name="TeacherData">Teacher Object</param>
+        /// <returns>The updated Teacher object</returns>
+        /// <example>
+        /// PUT: api/Teahcer/UpdateTeacher/29
+        /// Headers: Content-Type: application/json
+        /// Request Body:
+        /// {
+        /// "TeacherFname" : "Tommie",
+        /// "TeacherLname" : "Tong",
+        /// "EmployeeNumber" : "T100",
+        /// "HireDate" : "2024-12-01T00:00:00",
+        /// "Salary" : "99"
+        /// } 
+        /// curl -X "PUT" -H "Content-Type: application/json" -d "{\"teacherFname\":\"Tommie\", \"teacherLname\":\"Tong\", \"employeeNumber\":\"T100\", \"HireDate\" : \"2024-12-01T00:00:00\", \"salary\":99, \"courseList\": \"\"}" "https://localhost:7293/api/Teacher/UpdateTeacher/29"
+        /// -> {"teacherId":29,"teacherFname":"Tommie","teacherLname":"Tong","employeeNumber":"T100","hireDate":"2024-12-01T00:00:00","salary":99.00,"courseList":""}
+        /// 
+        /// 
+        /// </example>
+        [HttpPut(template: "UpdateTeacher/{TeacherId}")]
+        public Teacher UpdateTeacher(int TeacherId, [FromBody] Teacher TeacherData)
+        {
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+                MySqlCommand Command = Connection.CreateCommand();
+                Command.CommandText = "UPDATE teachers SET teacherfname=@fname, teacherlname=@lname, employeenumber=@enum, hiredate=@hdate, salary=@salary WHERE teacherid=@id";
+                Command.Parameters.AddWithValue("@fname", TeacherData.TeacherFname);
+                Command.Parameters.AddWithValue("@lname", TeacherData.TeacherLname);
+                Command.Parameters.AddWithValue("@enum", TeacherData.EmployeeNumber);
+                Command.Parameters.AddWithValue("@hdate", TeacherData.HireDate);
+                Command.Parameters.AddWithValue("@salary", TeacherData.Salary);
+                Command.Parameters.AddWithValue("@id", TeacherId);
+                Command.ExecuteNonQuery();
+            }
+            return FindTeacher(TeacherId);
         }
     }
 }

@@ -63,5 +63,24 @@ namespace cumulative1.Controllers
             int RowsAffected = _api.DeleteStudent(id);
             return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Student SelectedStudent = _api.FindStudent(id);
+            return View(SelectedStudent);
+        }
+
+        [HttpPost]
+        public IActionResult Update(int id, string StudentFname, string StudentLname, string StudentNumber)
+        {
+            Student UpdateStudent = new Student();
+            UpdateStudent.StudentFname = StudentFname;
+            UpdateStudent.StudentLname = StudentLname;
+            UpdateStudent.StudentNumber = StudentNumber;
+
+            _api.UpdateStudent(id, UpdateStudent);
+            return RedirectToAction("Show", new { id = id });
+        }
     }
 }

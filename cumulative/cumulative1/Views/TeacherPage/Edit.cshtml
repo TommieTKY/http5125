@@ -1,0 +1,81 @@
+﻿@model cumulative1.Models.Teacher
+
+<div id="containershow">
+    <nav>
+        <a class="navlink" href="/TeacherPage/Show/@Model.TeacherId">Back</a>
+    </nav>
+
+    <h2>Edit Teacher</h2>
+
+    <form method="POST" action="/TeacherPage/Update/@Model.TeacherId" name="updateform">
+        <div class="inputrow">
+            <label for="TeacherFname">First name:</label>
+            <input type="text" name="TeacherFname" id="TeacherFname" value="@Model.TeacherFname"/><span id="fnameErr"></span>
+        </div>
+        <div class="inputrow">
+            <label for="TeacherLname">Last name:</label>
+            <input type="text" name="TeacherLname" id="TeacherLname" value="@Model.TeacherLname"/><span id="lnameErr"></span>
+        </div>
+        <div class="inputrow">
+            <label for="EmployeeNumber">Employee Number:</label>
+            <input type="text" name="EmployeeNumber" id="EmployeeNumber" value="@Model.EmployeeNumber" />
+        </div>
+        <div class="inputrow">
+            <label for="HireDate">Hire Date:</label>
+            <input type="datetime-local" name="HireDate" id="HireDate" value="@Model.HireDate" /><span id="dateErr"></span>
+        </div>
+        <div class="inputrow">
+            <label for="Salary">Salary($):</label>
+            <input type="text" name="Salary" id="Salary" value="@Model.Salary" /><span id="salaryErr"></span>
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Update Teacher" />
+        </div>
+    </form>
+</div>
+
+<script>
+    window.onload = function () {
+        var formHandle = document.forms.updateform;
+        formHandle.onsubmit = processForm;
+        function processForm() {
+            var inputF = formHandle.TeacherFname;
+            var fnameErr = document.getElementById("fnameErr");
+            if (inputF.value.trim() === "") {
+                inputF.focus();
+                fnameErr.innerHTML=" Please enter your first name."
+                fnameErr.style.color = "red";
+                return false;
+            };
+
+            var inputL = formHandle.TeacherLname;
+            var lnameErr = document.getElementById("lnameErr");
+            if (inputL.value.trim() === "") {
+                inputL.focus();
+                lnameErr.innerHTML=" Please enter your last name."
+                lnameErr.style.color = "red";
+                return false;
+            };
+
+            var stringD = formHandle.HireDate;
+            var dateErr = document.getElementById("dateErr");
+            var inputD = new Date(stringD.value);
+            var currentD = new Date();
+            if (stringD.value ==="" || inputD > currentD) {
+                stringD.focus();
+                dateErr.innerHTML=" The hire date cannot be empty or in the future."
+                dateErr.style.color = "red";
+                return false;
+            };
+
+            var inputSalary = formHandle.Salary;
+            var salaryErr = document.getElementById("salaryErr");
+            if (inputSalary.value <0 || inputSalary.value.trim() === "") {
+                salaryErr.innerHTML=" The salary cannot be empty or less than 0."
+                salaryErr.style.color = "red";
+                inputSalary.focus();
+                return false;
+            };
+        };
+    };
+</script>

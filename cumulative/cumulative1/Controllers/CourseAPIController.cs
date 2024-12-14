@@ -153,5 +153,25 @@ namespace cumulative1.Controllers
                 return Command.ExecuteNonQuery();
             }
         }
+
+
+        [HttpPut(template: "UpdateCourse/{CourseId}")]
+        public Course UpdateCourse(int CourseId, [FromBody] Course CourseData)
+        {
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+                MySqlCommand Command = Connection.CreateCommand();
+                Command.CommandText = "UPDATE courses SET coursecode=@code, teacherid=@tid, startdate=@sdate, finishdate=@fdate, coursename=@name WHERE courseid=@id";
+                Command.Parameters.AddWithValue("@code", CourseData.CourseCode);
+                Command.Parameters.AddWithValue("@tid", CourseData.TeacherId);
+                Command.Parameters.AddWithValue("@sdate", CourseData.StartDate);
+                Command.Parameters.AddWithValue("@fdate", CourseData.FinishDate);
+                Command.Parameters.AddWithValue("@name", CourseData.CourseName);
+                Command.Parameters.AddWithValue("@id", CourseId);
+                Command.ExecuteNonQuery();
+            }
+            return FindCourse(CourseId);
+        }
     }
 }

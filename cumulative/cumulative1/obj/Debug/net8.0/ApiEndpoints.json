@@ -98,6 +98,37 @@
     ]
   },
   {
+    "ContainingType": "cumulative1.Controllers.CourseAPIController",
+    "Method": "UpdateCourse",
+    "RelativePath": "api/Course/UpdateCourse/{CourseId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "CourseData",
+        "Type": "cumulative1.Models.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "cumulative1.Models.Course",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "cumulative1.Controllers.StudentAPIController",
     "Method": "AddStudent",
     "RelativePath": "api/Student/AddStudent",
@@ -186,6 +217,37 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[cumulative1.Models.Student, cumulative1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "cumulative1.Controllers.StudentAPIController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/Student/UpdateStudent/{StudentId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "StudentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "StudentData",
+        "Type": "cumulative1.Models.Student",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "cumulative1.Models.Student",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -295,6 +357,37 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[cumulative1.Models.Teacher, cumulative1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "cumulative1.Controllers.TeacherAPIController",
+    "Method": "UpdateTeacher",
+    "RelativePath": "api/Teacher/UpdateTeacher/{TeacherId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TeacherId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "TeacherData",
+        "Type": "cumulative1.Models.Teacher",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "cumulative1.Models.Teacher",
         "MediaTypes": [
           "text/plain",
           "application/json",

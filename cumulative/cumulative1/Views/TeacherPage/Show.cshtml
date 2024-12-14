@@ -9,8 +9,11 @@
     <p>Hire Date: @Model.HireDate</p>
     <p>Salary: $@Model.Salary</p>
     <p>Teaching courses: @Model.CourseList</p>
+    <a href="/TeacherPage/List">Back to List</a>
+    <a href="/TeacherPage/DeleteConfirm/@Model.TeacherId">Delete</a>
+    <a href="/TeacherPage/Edit/@Model.TeacherId">Edit</a>
 </div>
-<a href="/TeacherPage/DeleteConfirm/@Model.TeacherId">Delete</a>
+
 
 <style>
     body {

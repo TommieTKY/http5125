@@ -1,14 +1,5 @@
 ﻿@model IEnumerable<cumulative1.Models.Teacher>
 
-@{
-    // List<string> teacherEnum = new List<string>();
-    // foreach (cumulative1.Models.Teacher eachTeacher in Model)
-    // {
-    //     teacherEnum.Add(eachTeacher.EmployeeNumber);
-    // }
-    // var employeeNumbers = Model.Select(t => t.EmployeeNumber).ToList();
-}
-
 <h1>Add a new Teacher</h1>
 
 <form method="POST" action="/TeacherPage/Create" name="createform">
@@ -72,22 +63,6 @@
                 inputEnum.focus();
                 return false;
             };
-
-            // for (var i = 0; i < teacherEnum.Count; i++) {
-            //     if (inputEnum === teacherEnum[i]) {
-            //         inputEnum.style.background = "red";
-            //         inputEnum.focus();
-            //         return false;
-            //     }
-            // }
-
-            // var existingEmployeeNumbers = Html.Raw(Json.Serialize(employeeNumbers));
-            // if (existingEmployeeNumbers.includes(inputEnum.value)) {
-            //     inputEnum.style.background = "red";
-            //     inputEnum.focus();
-            //     return false;
-            // }
-
         };
     };
 </script>

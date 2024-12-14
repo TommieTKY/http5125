@@ -29,6 +29,8 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
   POST: api/Teacher/AddTeacher -> Add new teacher information.
 
   DELETE: api/TeacherAPI/DeleteTeacher/{id} -> Delete a teacher with the teacher id.
+
+  PUT: api/Teacher/UpdateTeacher/{id} -> Update a Teacher information.
   ![Teacher List Page](image/teacher.jpeg)
 
 - Controllers/StudentAPIController.cs
@@ -42,6 +44,8 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
   POST: api/Student/AddStudent -> Add new student information.
 
   DELETE: api/Student/DeleteStudent/{id} -> Delete a student with the student id.
+
+  PUT: api/Student/UpdateStudent/{id} -> Update a Student information.
   ![Student List Page](image/student.jpeg)
 
 - Controllers/CourseAPIController.cs
@@ -55,4 +59,6 @@ It also shows Add and Delete through an API POST and DELETE request, as well as 
   POST: api/Course/AddCourse -> Add new course information.
 
   DELETE: api/Course/DeleteCourse/{id} -> Delete a course with the course id.
+
+  PUT: api/Course/UpdateCourse/{id} -> Update a Course information.
   ![Course List Page](image/course.jpeg)

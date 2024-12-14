@@ -152,5 +152,22 @@ namespace cumulative1.Controllers
                 return Command.ExecuteNonQuery();
             }
         }
+
+        [HttpPut(template: "UpdateStudent/{StudentId}")]
+        public Student UpdateStudent(int StudentId, [FromBody] Student StudentData)
+        {
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+                MySqlCommand Command = Connection.CreateCommand();
+                Command.CommandText = "UPDATE students SET studentfname=@fname, studentlname=@lname, studentnumber=@snum, enroldate=CURRENT_DATE() WHERE studentid=@id";
+                Command.Parameters.AddWithValue("@fname", StudentData.StudentFname);
+                Command.Parameters.AddWithValue("@lname", StudentData.StudentLname);
+                Command.Parameters.AddWithValue("@snum", StudentData.StudentNumber);
+                Command.Parameters.AddWithValue("@id", StudentId);
+                Command.ExecuteNonQuery();
+            }
+            return FindStudent(StudentId);
+        }
     }
 }

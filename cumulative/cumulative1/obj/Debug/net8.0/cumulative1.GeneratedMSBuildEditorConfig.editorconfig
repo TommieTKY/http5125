@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxEZWxldGVDb25maXJtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/CoursePage/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/CoursePage/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcRGVsZXRlQ29uZmlybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/StudentPage/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/StudentPage/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/TeacherPage/DeleteConfirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclBhZ2VcRGVsZXRlQ29uZmlybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/TeacherPage/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclBhZ2VcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tongk/OneDrive/Documents/http5125/cumulative/cumulative1/Views/TeacherPage/List.cshtml]
